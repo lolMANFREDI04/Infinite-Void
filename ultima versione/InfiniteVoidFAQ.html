@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Void - FAQ</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            overflow: auto;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            z-index: 1;
+        }
+
+        h1 {
+            float: left;
+            margin-right: 20px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        #logo {
+            float: left;
+            margin-left: 10px;
+            margin-top: 10px;
+            max-width: 100px;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 80px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #footer {
+            clear: both;
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #auth-buttons {
+            float: right;
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+
+        #auth-buttons button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        #faq {
+            margin-top: 80px;
+            padding: 20px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .question {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .answer {
+            display: none;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Infinite Void</h1>
+        <img src="https://cdn.discordapp.com/attachments/851169186147205210/1182838600442847262/InfinityVoidLogo.png?ex=6586274a&is=6573b24a&hm=16ee0044740b9c03f7ee41f88638882656d4dd3903066bc9e7dfe9651867d1ce&" alt="Logo dell'azienda" id="logo">
+        <div id="auth-buttons">
+            <button onclick="openLoginModal()">Login</button>
+            <button onclick="openRegisterModal()">Register</button>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="InfiniteVoidChiSiamo.html">Chi Siamo</a>
+        <a href="InfiniteVoidContatti.html">Contatti</a>
+        <a href="InfiniteVoidSponsor.html">Sponsor</a>
+        <a href="InfiniteVoidFAQ.html">FAQ</a>
+    </nav>
+    <br><br><br><br>
+    <section id="faq">
+        <h2>Domande frequenti</h2>
+        <p>Clicca su ogni domanda per visualizzare la risposta:</p>
+
+        <div class="question" onclick="toggleAnswer(1)">
+            <p>1. Che cos’è Infinite Void?</p>
+            <div class="answer" id="answer1"><strong>Infinite Void è una piattaforma che permette di creare la propria pubblicità anche tramite l'ausilio di intelligenza artificiale generativa progettata per aiutare le aziende a creare contenuti a scopo di marketing.</strong></div>
+        </div>
+
+        <div class="question" onclick="toggleAnswer(2)">
+            <p>2. Infinite Void è gratuito?</p>
+            <div class="answer" id="answer2"><strong>No, Infinite Void è una piattaforma a pagamento in cui puoi scegliere i piani tra quelli messi a disposizione.</strong></div>
+        </div>
+
+        <div class="question" onclick="toggleAnswer(3)">
+            <p>3. Quali sono le finalità di Infinite Void?</p>
+            <div class="answer" id="answer3"><strong>Infinite Void aiuta le aziende a generare diversi tipi di contenuti, articoli di blog, copy pubblicitari, schede prodotto e-commerce, caption per i social media, podcast, video e altro ancora.</strong></div>
+        </div>
+
+        <div class="question" onclick="toggleAnswer(4)">
+            <p>4. I contenuti generati da Infinite Void sono privi di plagio?</p>
+            <div class="answer" id="answer4"><strong>Si, Infinite Void genera sempre contenuti originali.</strong></div>
+        </div>
+
+        <div class="question" onclick="toggleAnswer(5)">
+            <p>5. Quanto tempo ci vorrà per ricevere il contenuto che ho ordinato?</p>
+            <div class="answer" id="answer5"><strong>Tutti gli ordini vengono generalmente consegnati entro 2 giorni lavorativi. A volte possono essere necessari tempi più lunghi, fino a 5 giorni lavorativi dovuti in base ad alcune richieste.</strong></div>
+        </div>
+
+        <div class="question" onclick="toggleAnswer(6)">
+            <p>6. Quanto tempo ho a disposizione per accettare il contenuto consegnato?</p>
+            <div class="answer" id="answer6"><strong>Hai fino a 4 giorni per accettare il contenuto consegnato.</strong></div>
+        </div>
+
+        <div class="question" onclick="toggleAnswer(7)">
+            <p>7. Cosa succede se il contenuto consegnato non mi piace?</p>
+            <div class="answer" id="answer7"><strong>Puoi chiedere fino a 3 correzioni. Se non sei comunque soddisfatto, puoi anche rifiutare il contenuto. Ogni rifiuto sarà esaminato e approvato dal team di Infinite Void.</strong></div>
+        </div>
+
+        <div class="question" onclick="toggleAnswer(8)">
+            <p>8. Quanto costa Infinite Void?</p>
+            <div class="answer" id="answer8"><strong>Infinite Void prevede diversi piani tariffari. Puoi accedere ai nostri prodotti effettuando una ricarica singola (importo minimo: 50 €) oppure sottoscrivendo uno dei nostri abbonamenti. Se nessuna di queste proposte ti convince, contattaci via email: elaboreremo una richiesta mirata alle vostre necessità.</strong></div>
+        </div>
+
+        <div class="question" onclick="toggleAnswer(9)">
+            <p>9. Quali sono i metodi di pagamento?</p>
+            <div class="answer" id="answer9"><strong>Per sottoscrivere un abbonamento annuale puoi utilizzare la carta di credito, criptovalute e PayPal.</strong></div>
+        </div>
+
+        <div class="question" onclick="toggleAnswer(10)">
+            <p>10. Come faccio a disattivare il mio abbonamento a Infinite Void?</p>
+            <div class="answer" id="answer10"><strong>Per disattivare l’abbonamento, accedi al tuo account e clicca su Disattiva l’account. Se disattivi il tuo account non potrai più accedere ai servizi di Infinite Void e i tuoi dati saranno cancellati in modo permanente.</strong></div>
+        </div>
+
+        <div class="question" onclick="toggleAnswer(11)">
+            <p>11. Qual è l’abbonamento che costa di meno?</p>
+            <div class="answer" id="answer11"><strong>L’abbonamento che costa di meno è quello da 80 €.</strong></div>
+        </div>
+
+        <div class="question" onclick="toggleAnswer(12)">
+            <p>12. Se ho bisogno di risolvere un problema?</p>
+            <div class="answer" id="answer12"><strong>Se riscontri qualsiasi problema con i nostri servizi puoi inviarci la tua richiesta all’email dove il nostro team ti risponderà entro 1 giorno lavorativo.<br>infinitevoid8000@gmail.com</strong></div>
+        </div>
+
+    </section>
+
+    <footer id="footer">
+        <p>&copy; 2023 Infinite Void. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        function toggleAnswer(questionNumber) {
+            const answer = document.getElementById(`answer${questionNumber}`);
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+
+</body>
+
+</html>

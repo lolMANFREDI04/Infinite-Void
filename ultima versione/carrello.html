@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Void</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 80px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .item-menu {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #logo {
+            float: left;
+            margin-left: 10px;
+            margin-top: 10px;
+            max-width: 100px;
+        }
+
+        h1 {
+            float: left;
+            margin-right: 20px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        #video-container {
+            margin: 20px auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #video-info {
+            width: 30%;
+            max-width: 400px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #video-info h3 {
+            margin-bottom: 10px;
+        }
+
+        #video-info p {
+            font-size: 14px;
+        }
+
+        #home {
+            margin-top: 0;
+        }
+
+        #carrello {
+            background-color: #ddd;
+            float: right
+        }
+
+        #carrello img {
+            display: block;
+        }
+
+        #carrello:hover {
+            background-color: gray;
+        }
+
+        #acquista-container {
+            float: right;
+            margin-right: 20px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            height: 274px;
+        }
+
+        #acquista-container h3 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        #acquista-container p {
+            color: #555;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #acquista-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .piani-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .piano-container {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            height: 400px;
+            width: calc(25% - 20px);
+            margin-right: 20px;
+        }
+
+        .piano-container h3 {
+            color: #333;
+            font-size: 20px;
+        }
+
+        .piano-container p {
+            color: #555;
+            font-size: 16px;
+        }
+
+        .piano-container .prezzo {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .piano-container .acquista-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .piano-container:hover .acquista-button:hover {
+            background-color: #2980b9;
+        }
+
+        header {
+            overflow: auto;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            z-index: 1;
+        }
+
+        #nbar {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            margin-top: -10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        #auth-buttons {
+            float: right;
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+
+        #auth-buttons button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* Carrello Popup Styles */
+        #carrello-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+            max-width: 400px;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        #carrello-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        #carrello-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .carrello-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 8px 0;
+        }
+
+        .quantity-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        #checkout-button,
+        #remove-button,
+        .quantity-buttons button,
+        .remove-button {
+            background-color: #3498db;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        #remove-button {
+            background-color: #e74c3c;
+        }
+
+        /* Adjust styles when the cart is open */
+        body.cart-open {
+            overflow: hidden;
+        }
+
+        body.cart-open #carrello-overlay {
+            display: block;
+        }
+
+        body.cart-open #carrello-popup {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Infinite Void</h1>
+        <img src="https://cdn.discordapp.com/attachments/851169186147205210/1182838600442847262/InfinityVoidLogo.png?ex=6586274a&is=6573b24a&hm=16ee0044740b9c03f7ee41f88638882656d4dd3903066bc9e7dfe9651867d1ce&"
+            alt="Logo dell'azienda" id="logo">
+        <div id="auth-buttons">
+            <button onclick="openLoginModal()">Login</button>
+            <button onclick="openRegisterModal()">Register</button>
+        </div>
+    </header>
+
+    <nav>
+        <a class="item-menu" href="index.html">Home</a>
+        <a class="item-menu" href="InfiniteVoidChiSiamo.html">Chi Siamo</a>
+        <a class="item-menu" href="InfiniteVoidContatti.html">Contatti</a>
+        <a class="item-menu" href="InfiniteVoidSponsor.html">Sponsor</a>
+        <a class="item-menu" href="InfiniteVoidFAQ.html">FAQ</a>
+        <div class="item-menu" id="carrello"><a href="#" onclick="openCarrello()"><img
+                    src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_cart-512.png"
+                    width="20px"></a></div>
+    </nav>
+
+    <section id="home">
+        <br><br><br><br><br><br><br><br>
+        <h2>Benvenuto su Infinite Void</h2>
+        <p>Infinite Void è il luogo ideale per promuovere la tua azienda attraverso strategie pubblicitarie efficaci.
+            Offriamo soluzioni personalizzate per aumentare la visibilità del tuo marchio e raggiungere il tuo pubblico
+            target. Esplora le nostre opzioni di pubblicità e contattaci per ulteriori informazioni.</p>
+    </section>
+    <br><br><br>
+    <div id="nbar">NOVITÀ</div>
+    <section id="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/0Ay1StJ_an0" frameborder="0"
+            allowfullscreen></iframe>
+        <div id="video-info">
+            <h3>Nuove Pubblicità AI!</h3>
+            <p>Se stai cercando un modo innovativo per far decollare il tuo brand, la pubblicità basata
+                sull'intelligenza artificiale è la risposta! Con Infinite Void, ti offriamo l'opportunità di
+                distinguerti nella galassia del marketing.
+                <br><br>
+                -Targeting Preciso: Raggiungi il tuo pubblico ideale con precisione millimetrica, aumentando
+                l'efficacia delle tue campagne pubblicitarie.
+                <br><br>
+                -Creatività Illimitata: L'IA ti apre le porte a creatività senza limiti. Siamo pronti a
+                trasformare la tua visione in annunci pubblicitari accattivanti e memorabili.
+            </p>
+        </div>
+        <section id="acquista-container">
+            <h3><br>Acquista Ora</h3><br>
+            <p>49.99€</p>
+            <button id="acquista-button" onclick="addToCarrello('Nuove Pubblicità AI', '49.99')">Acquista Ora</button>
+        </section>
+    </section>
+    <br><br><br>
+    <div id="nbar">I nostri piani</div>
+    <section class="piani-container">
+        <div class="piano-container">
+            <h3>Piano Base</h3>
+            <p>Campagne pubblicitarie online mirate.<br><br> Annunci visibili su piattaforme social media e siti
+                web affiliati.<br><br> Report mensili sulle prestazioni della campagna.<br><br> Supporto
+                clienti via email.<br><br><br><br>
+            </p>
+            <p class="prezzo">79.99€</p>
+            <button class="acquista-button" onclick="addToCarrello('Piano Base', '79.99')">Acquista Ora</button>
+        </div>
+        <div class="piano-container">
+            <h3>Piano Intermedio</h3>
+            <p>Pubblicità video coinvolgenti su diverse piattaforme.<br><br> Campagne di remarketing per
+                raggiungere utenti interessati.<br><br> Inclusione in newsletter periodiche per aumentare la
+                visibilità.<br><br> Analisi delle metriche pubblicitarie con report dettagliati.<br><br>
+                Supporto clienti tramite email e chat.<br>
+            </p>
+            <p class="prezzo">99.99€</p>
+            <button class="acquista-button" onclick="addToCarrello('Piano Intermedio', '99.99')">Acquista
+                Ora</button>
+        </div>
+        <div class="piano-container">
+            <h3>Piano Avanzato</h3>
+            <p>Copertura pubblicitaria su diverse piattaforme, inclusi podcast e video streaming.<br><br>
+                Analisi approfondita delle metriche con report interattivi.<br><br> Supporto clienti dedicato
+                con consulenti esperti.<br><br> Accesso a nuove funzionalità pubblicitarie in anteprima.<br><br><br><br>
+            </p>
+            <p class="prezzo">149.99€</p>
+            <button class="acquista-button" onclick="addToCarrello('Piano Avanzato', '149.99')">Acquista
+                Ora</button>
+        </div>
+        <div class="piano-container" style="width: calc(25% - 20px);">
+            <h3>Piano Custom</h3>
+            <p> Strategia pubblicitaria altamente personalizzata.<br><br> Accesso prioritario a funzionalità
+                pubblicitarie personalizzate.<br><br> Supporto clienti dedicato e consulenti pubblicitari
+                dedicati.<br><br> Workshop e formazione personalizzati per massimizzare le campagne.<br><br>
+                Analisi avanzata delle metriche con report dettagliati.<br>
+            </p>
+            <p class="prezzo">Il prezzo varia in base alle richieste</p>
+            <button class="acquista-button" onclick="addToCarrello('Piano Custom', 'Prezzo variabile')">Acquista
+                Ora</button>
+        </div>
+    </section>
+    <p>Ogni offerta comprende i vantaggi del tier precedente*</p>
+
+    <footer>
+        <p>&copy; 2023 Infinite Void. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        var savedCartItems = [];
+
+        function addToCarrello(productName, price) {
+            var carrelloItems = document.getElementById('carrello-items');
+            var existingItem = document.querySelector(`.carrello-item[data-product="${productName}"]`);
+
+            if (existingItem) {
+                // If the item is already in the cart, increment quantity
+                var quantityElement = existingItem.querySelector('.quantity');
+                var quantity = parseInt(quantityElement.textContent, 10);
+                quantityElement.textContent = quantity + 1;
+            } else {
+                // If the item is not in the cart, add a new item
+                var newItem = document.createElement('li');
+                newItem.classList.add('carrello-item');
+                newItem.setAttribute('data-product', productName);
+                newItem.innerHTML = `
+                    <span>${productName}</span>
+                    <div class="quantity-buttons">
+                        <button onclick="decrementQuantity(this)">-</button>
+                        <span class="quantity">1</span>
+                        <button onclick="incrementQuantity(this)">+</button>
+                    </div>
+                    <span>${price}€</span>
+                    <button class="remove-button" onclick="removeFromCarrello(this)">Rimuovi</button>
+                `;
+                carrelloItems.appendChild(newItem);
+            }
+
+            updateCartTotal();
+        }
+
+        function openCarrello() {
+            document.body.classList.add('cart-open');
+        }
+
+        function closeCarrello() {
+            savedCartItems = Array.from(document.querySelectorAll('.carrello-item')).map(item => ({
+                productName: item.dataset.product,
+                quantity: parseInt(item.querySelector('.quantity').textContent, 10)
+            }));
+
+            document.body.classList.remove('cart-open');
+        }
+
+        function incrementQuantity(button) {
+            var quantityElement = button.parentNode.querySelector('.quantity');
+            var quantity = parseInt(quantityElement.textContent, 10);
+            quantityElement.textContent = quantity + 1;
+
+            updateCartTotal();
+        }
+
+        function decrementQuantity(button) {
+            var quantityElement = button.parentNode.querySelector('.quantity');
+            var quantity = parseInt(quantityElement.textContent, 10);
+
+            if (quantity > 1) {
+                quantityElement.textContent = quantity - 1;
+            } else {
+                removeFromCarrello(button);
+            }
+
+            updateCartTotal();
+        }
+
+        function removeFromCarrello(button) {
+            var carrelloItem = button.closest('.carrello-item');
+            carrelloItem.remove();
+
+            updateCartTotal();
+        }
+
+        function updateCartTotal() {
+            var carrelloItems = document.querySelectorAll('.carrello-item');
+            var subtotal = Array.from(carrelloItems).reduce((total, item) => {
+                var price = parseFloat(item.querySelector('span:last-child').textContent.replace('€', ''));
+                var quantity = parseInt(item.querySelector('.quantity').textContent, 10);
+                return total + price * quantity;
+            }, 0);
+
+            var iva = subtotal * 0.22; // Assuming 22% VAT, you can adjust this value
+            var totalAmount = subtotal + iva;
+
+            var cartTotalElement = document.getElementById('cart-total');
+            cartTotalElement.innerHTML = `
+                <div id="cart-subtotal">Subtotale: ${subtotal.toFixed(2)}€</div>
+                <div id="cart-iva">IVA (22%): ${iva.toFixed(2)}€</div>
+                <div id="cart-total-amount">Totale: ${totalAmount.toFixed(2)}€</div>
+            `;
+        }
+
+        function checkout() {
+            var carrelloItems = document.querySelectorAll('.carrello-item');
+
+            if (carrelloItems.length === 0) {
+                alert('Il carrello è vuoto. Aggiungi prodotti prima di procedere al checkout.');
+            } else {
+                // Implement your checkout logic here
+                alert('Checkout functionality will be implemented here.');
+            }
+        }
+
+        function restoreSavedCartItems() {
+            var carrelloItems = document.getElementById('carrello-items');
+            carrelloItems.innerHTML = '';
+
+            savedCartItems.forEach(item => {
+                for (var i = 0; i < item.quantity; i++) {
+                    addToCarrello(item.productName, 'price_placeholder'); // Replace 'price_placeholder' with the actual price
+                }
+            });
+
+            updateCartTotal();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            restoreSavedCartItems();
+        });
+    </script>
+
+    <!-- Carrello Popup -->
+    <div id="carrello-overlay" onclick="closeCarrello()"></div>
+    <div id="carrello-popup">
+        <h2>Carrello</h2>
+        <ul id="carrello-items"></ul>
+        <div id="cart-total"></div>
+        <button id="checkout-button" onclick="checkout()">Checkout</button>
+        <button onclick="closeCarrello()">Chiudi</button>
+    </div>
+</body>
+
+</html>

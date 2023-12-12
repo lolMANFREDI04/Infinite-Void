@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Void - Contatti</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            overflow: auto;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            z-index: 1;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 80px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .item-menu {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #logo {
+            float: left;
+            margin-left: 10px;
+            margin-top: 10px;
+            max-width: 100px;
+        }
+
+        h1 {
+            float: left;
+            margin-right: 20px;
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+        }
+
+        #auth-buttons {
+            float: right;
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+
+        #auth-buttons button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        #content {
+            margin-top: 120px;
+            padding: 20px;
+        }
+
+        #content h2 {
+            color: #333;
+            font-size: 28px;
+        }
+
+        #content p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Infinite Void</h1>
+        <img src="https://cdn.discordapp.com/attachments/851169186147205210/1182838600442847262/InfinityVoidLogo.png?ex=6586274a&is=6573b24a&hm=16ee0044740b9c03f7ee41f88638882656d4dd3903066bc9e7dfe9651867d1ce&" alt="Logo dell'azienda" id="logo">
+        <div id="auth-buttons">
+            <button onclick="openLoginModal()">Login</button>
+            <button onclick="openRegisterModal()">Register</button>
+        </div>
+    </header>
+
+    <nav>
+        <a class="item-menu" href="index.html">Home</a>
+        <a class="item-menu" href="InfiniteVoidChiSiamo.html">Chi Siamo</a>
+        <a class="item-menu" href="InfiniteVoidContatti.html">Contatti</a>
+        <a class="item-menu" href="InfiniteVoidSponsor.html">Sponsor</a>
+        <a class="item-menu" href="InfiniteVoidFAQ.html">FAQ</a>
+    </nav>
+
+    <section id="content">
+        <h2>I Nostri Contatti</h2>
+        <p>Contattaci per informazioni legali e servizi aggiuntivi</p>
+        <p><a href="https://www.instagram.com/manfredi.lo_cicero/">Instagram <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/2048px-Instagram_logo_2022.sv g.png" style="width:20px"></a></p>
+        <p><a href="https://www.facebook.com/lolmanfredi.null/?locale=it_IT">Facebook <img src="https://www.facebook.com/images/fb_icon_325x325.png" style="width:20px"></a></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Infinite Void. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        function openLoginModal() {
+            // Implementa la logica per aprire il modale di login
+            console.log("Apri modale di login");
+        }
+
+        function openRegisterModal() {
+            // Implementa la logica per aprire il modale di register
+            console.log("Apri modale di register");
+        }
+    </script>
+
+</body>
+
+</html>
